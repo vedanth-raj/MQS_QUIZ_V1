@@ -602,14 +602,14 @@ fetch('check_session.php')
 
         const questions = [
             // Original EQ Questions (Likert)
-            { id: 'eq1', text: 'I recognize when my emotions are influencing my decisions.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/eq/eq-1.jpg' },
-            { id: 'eq2', text: 'I remain calm under pressure or during conflict.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/eq/eq-2.jpg' },
-            { id: 'eq3', text: 'I try to understand how others are feeling even if they don\'t say it out loud.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/eq/eq-3.jpg' },
-            { id: 'eq4', text: 'I find it easy to express how I feel without offending others.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/eq/eq-4.jpg' },
-            { id: 'eq5', text: 'When I\'m frustrated or angry, I know how to manage those emotions effectively.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/eq/eq-5.jpg' },
-            { id: 'eq6', text: 'I reflect on my emotional responses after an intense interaction.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/eq/eq-6.jpg' },
-            { id: 'eq7', text: 'I can tell when someone is hiding their real feelings.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/eq/eq-7.jpg' },
-            { id: 'eq8', text: 'I adjust my behavior based on others\' emotional reactions.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/eq/eq-8.jpg' },
+            { id: 'eq1', text: 'I recognize when my emotions are influencing my decisions.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/EQ/EQ-1.jpg' },
+            { id: 'eq2', text: 'I remain calm under pressure or during conflict.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/EQ/EQ-2.jpg' },
+            { id: 'eq3', text: 'I try to understand how others are feeling even if they don\'t say it out loud.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/EQ/EQ-3.jpg' },
+            { id: 'eq4', text: 'I find it easy to express how I feel without offending others.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/EQ/EQ-4.jpg' },
+            { id: 'eq5', text: 'When I\'m frustrated or angry, I know how to manage those emotions effectively.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/EQ/EQ-5.jpg' },
+            { id: 'eq6', text: 'I reflect on my emotional responses after an intense interaction.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/EQ/EQ-6.jpg' },
+            { id: 'eq7', text: 'I can tell when someone is hiding their real feelings.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/EQ/EQ-7.jpg' },
+            { id: 'eq8', text: 'I adjust my behavior based on others\' emotional reactions.', type: 'likert', category: 'EQ', timeLimit: 10, bgPath: 'images/EQ/EQ-8.jpg' },
             // Scenario-Based EQ Questions
             {
                 id: 'eq9', title: 'Group Project Conflict',
@@ -635,13 +635,13 @@ fetch('check_session.php')
             },
 
             // Original IQ Questions (MCQ)
-            { id: 'iq1', text: 'Which number logically completes the series? 2, 4, 8, 16, ?', type: 'mcq', category: 'IQ', options: ['18', '24', '32', '26'], correct: '32', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/iq/iq-1.jpg' },
-            { id: 'iq2', text: 'If all bloops are razzies, and all razzies are lazzies, are all bloops definitely lazzies?', type: 'mcq', category: 'IQ', options: ['Yes', 'No', 'Cannot be determined', 'Only some are'], correct: 'Yes', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/iq/iq-2.jpg' },
-            { id: 'iq3', text: 'Mary is older than Tom. Tom is older than Sara. Who is the youngest?', type: 'mcq', category: 'IQ', options: ['Mary', 'Tom', 'Sara', 'Cannot be determined'], correct: 'Sara', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/iq/iq-3.jpg' },
-            { id: 'iq4', text: 'What comes next in the pattern? A, C, F, J, O, ?', type: 'mcq', category: 'IQ', options: ['S', 'T', 'U', 'Q'], correct: 'T', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/iq/iq-4.jpg' },
-            { id: 'iq5', text: 'Rearrange the letters "RAPET" to make a valid word. What is it?', type: 'mcq', category: 'IQ', options: ['TAPER', 'PRATE', 'REAPT', 'PETAR'], correct: 'TAPER', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/iq/iq-5.jpg' },
-            { id: 'iq6', text: 'If the day after tomorrow is Wednesday, what day is today?', type: 'mcq', category: 'IQ', options: ['Sunday', 'Monday', 'Tuesday', 'Saturday'], correct: 'Monday', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/iq/iq-6.jpg' },
-            { id: 'iq7', text: 'Which shape is the odd one out? Circle, Square, Triangle, Cube', type: 'mcq', category: 'IQ', options: ['Circle', 'Square', 'Triangle', 'Cube'], correct: 'Cube', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/iq/iq-7.jpg' },
+            { id: 'iq1', text: 'Which number logically completes the series? 2, 4, 8, 16, ?', type: 'mcq', category: 'IQ', options: ['18', '24', '32', '26'], correct: '32', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/IQ/IQ-1.jpg' },
+            { id: 'iq2', text: 'If all bloops are razzies, and all razzies are lazzies, are all bloops definitely lazzies?', type: 'mcq', category: 'IQ', options: ['Yes', 'No', 'Cannot be determined', 'Only some are'], correct: 'Yes', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/IQ/IQ-2.jpg' },
+            { id: 'iq3', text: 'Mary is older than Tom. Tom is older than Sara. Who is the youngest?', type: 'mcq', category: 'IQ', options: ['Mary', 'Tom', 'Sara', 'Cannot be determined'], correct: 'Sara', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/IQ/IQ-3.jpg' },
+            { id: 'iq4', text: 'What comes next in the pattern? A, C, F, J, O, ?', type: 'mcq', category: 'IQ', options: ['S', 'T', 'U', 'Q'], correct: 'T', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/IQ/IQ-4.jpg' },
+            { id: 'iq5', text: 'Rearrange the letters "RAPET" to make a valid word. What is it?', type: 'mcq', category: 'IQ', options: ['TAPER', 'PRATE', 'REAPT', 'PETAR'], correct: 'TAPER', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/IQ/IQ-5.jpg' },
+            { id: 'iq6', text: 'If the day after tomorrow is Wednesday, what day is today?', type: 'mcq', category: 'IQ', options: ['Sunday', 'Monday', 'Tuesday', 'Saturday'], correct: 'Monday', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/IQ/IQ-6.jpg' },
+            { id: 'iq7', text: 'Which shape is the odd one out? Circle, Square, Triangle, Cube', type: 'mcq', category: 'IQ', options: ['Circle', 'Square', 'Triangle', 'Cube'], correct: 'Cube', timeLimit: Math.floor(Math.random() * 16) + 15, bgPath: 'images/IQ/IQ-7.jpg' },
             // Scenario-Based IQ Questions
             {
                 id: 'iq8', title: 'Lost Notes Puzzle',
@@ -667,15 +667,15 @@ fetch('check_session.php')
             },
 
             // Original FQ Questions (Likert)
-            { id: 'fq1', text: 'I track my income and expenses regularly.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-1.jpg' },
-            { id: 'fq2', text: 'I avoid unnecessary purchases even when tempted.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-2.jpg' },
-            { id: 'fq3', text: 'I set short-term and long-term financial goals.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-3.jpg' },
-            { id: 'fq4', text: 'I have an emergency fund or savings set aside.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-4.jpg' },
-            { id: 'fq5', text: 'Before investing, I evaluate the risk involved.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-5.jpg' },
-            { id: 'fq6', text: 'I know the difference between assets and liabilities.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-6.jpg' },
-            { id: 'fq7', text: 'I understand basic financial terms like "inflation," "interest," or "diversification."', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-7.jpg' },
-            { id: 'fq8', text: 'I am confident making independent financial decisions.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-8.jpg' },
-            { id: 'fq9', text: 'I review my bank or credit card statements each month.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/fq/fq-9.jpg' },
+            { id: 'fq1', text: 'I track my income and expenses regularly.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-1.jpg' },
+            { id: 'fq2', text: 'I avoid unnecessary purchases even when tempted.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-2.jpg' },
+            { id: 'fq3', text: 'I set short-term and long-term financial goals.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-3.jpg' },
+            { id: 'fq4', text: 'I have an emergency fund or savings set aside.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-4.jpg' },
+            { id: 'fq5', text: 'Before investing, I evaluate the risk involved.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-5.jpg' },
+            { id: 'fq6', text: 'I know the difference between assets and liabilities.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-6.jpg' },
+            { id: 'fq7', text: 'I understand basic financial terms like "inflation," "interest," or "diversification."', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-7.jpg' },
+            { id: 'fq8', text: 'I am confident making independent financial decisions.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-8.jpg' },
+            { id: 'fq9', text: 'I review my bank or credit card statements each month.', type: 'likert', category: 'FQ', timeLimit: 15, bgPath: 'images/FQ/FQ-9.jpg' },
             // Scenario-Based FQ Questions
             {
                 id: 'fq10', title: 'Budgeting Pocket Money',
@@ -701,14 +701,14 @@ fetch('check_session.php')
             },
 
             // Original SQ Questions (Likert)
-            { id: 'sq1', text: 'I find it easy to initiate conversations in unfamiliar groups.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/sq/sq-1.jpg' },
-            { id: 'sq2', text: 'I adapt my communication style depending on who I am talking to.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/sq/sq-2.jpg' },
-            { id: 'sq3', text: 'I enjoy helping others without expecting anything in return.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/sq/sq-3.jpg' },
-            { id: 'sq4', text: 'I listen to people carefully without interrupting them.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/sq/sq-4.jpg' },
-            { id: 'sq5', text: 'I prefer cooperation over competition in group settings.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/sq/sq-5.jpg' },
-            { id: 'sq6', text: 'I easily sense tension or discomfort in social situations.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/sq/sq-6.jpg' },
-            { id: 'sq7', text: 'People often approach me for advice or emotional support.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/sq/sq-7.jpg' },
-            { id: 'sq8', text: 'I maintain good relationships with people from different backgrounds.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/sq/sq-8.jpg' },
+            { id: 'sq1', text: 'I find it easy to initiate conversations in unfamiliar groups.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/SQ/SQ-1.jpg' },
+            { id: 'sq2', text: 'I adapt my communication style depending on who I am talking to.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/SQ/SQ-2.jpg' },
+            { id: 'sq3', text: 'I enjoy helping others without expecting anything in return.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/SQ/SQ-3.jpg' },
+            { id: 'sq4', text: 'I listen to people carefully without interrupting them.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/SQ/SQ-4.jpg' },
+            { id: 'sq5', text: 'I prefer cooperation over competition in group settings.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/SQ/SQ-5.jpg' },
+            { id: 'sq6', text: 'I easily sense tension or discomfort in social situations.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/SQ/SQ-6.jpg' },
+            { id: 'sq7', text: 'People often approach me for advice or emotional support.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/SQ/SQ-7.jpg' },
+            { id: 'sq8', text: 'I maintain good relationships with people from different backgrounds.', type: 'likert', category: 'SQ', timeLimit: 10, bgPath: 'images/SQ/SQ-8.jpg' },
             // Scenario-Based SQ Questions
             {
                 id: 'sq9', title: 'Class Participation',
