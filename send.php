@@ -43,14 +43,14 @@ $user_email = isset($_POST['user_email']) ? $_POST['user_email'] : '';
 $mail = new PHPMailer(true);
 
 try {
-    // Server settings
+    // Server settings - using environment variables for flexibility
     $mail->isSMTP();                                // Send using SMTP
-    $mail->Host       = 'smtp.gmail.com';           // SMTP server
+    $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.gmail.com'; // SMTP server
     $mail->SMTPAuth   = true;                       // Enable SMTP authentication
-    $mail->Username   = 'mywork3410@gmail.com';     // Your Gmail address
-    $mail->Password   = 'xfqxvnqjnwemefek';             // Your Gmail app password (no spaces)
+    $mail->Username   = getenv('SMTP_USERNAME') ?: 'mywork3410@gmail.com'; // SMTP username
+    $mail->Password   = getenv('SMTP_PASSWORD') ?: 'xfqxvnqjnwemefek'; // SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use STARTTLS encryption
-    $mail->Port       = 587;                        // SMTP port for STARTTLS
+    $mail->Port       = getenv('SMTP_PORT') ?: 587; // SMTP port
 
     $mail->setFrom('mywork3410@gmail.com', 'MQS Quiz');
     $mail->isHTML(true);                            // Email format as HTML
