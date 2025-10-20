@@ -1,8 +1,11 @@
 <?php
 session_start();
 
+$isRender = getenv('RENDER') !== false;
+$dbPath = $isRender ? __DIR__ . '/mqs_quiz.db' : 'sqlite:mqs_quiz.db';
+
 try {
-    $db = new PDO('sqlite:mqs_quiz.db');
+    $db = new PDO($dbPath);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Database connection failed: " . $e->getMessage());
