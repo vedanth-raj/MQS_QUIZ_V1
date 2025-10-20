@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MQS Quiz - Already Taken</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            width: 95%;
+            max-width: 600px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 10;
+        }
+        .container:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        h1 {
+            color: #ff6b6b;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.2em;
+            color: #2c3e50;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 6px solid #ff6b6b;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        a {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            box-shadow: 0 12px 35px rgba(118, 75, 162, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sorry!</h1>
+        <p>You have already taken the MQS assessment. You cannot take it again.</p>
+        <a href="login.html">Back to Login</a>
+    </div>
+</body>
+</html>

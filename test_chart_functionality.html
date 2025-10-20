@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chart Functionality</title>
+</head>
+<body>
+    <h1>Testing Chart Functionality</h1>
+    <p>This page will automatically submit test data to results.php to test chart rendering.</p>
+
+    <form id="testForm" action="results.php" method="POST" style="display: none;">
+        <input type="hidden" name="eqPercent" value="85">
+        <input type="hidden" name="iqPercent" value="90">
+        <input type="hidden" name="fqPercent" value="75">
+        <input type="hidden" name="sqPercent" value="80">
+        <input type="hidden" name="recommendations" value="Great job! Keep improving your skills.">
+        <input type="hidden" name="user_name" value="Test User">
+        <input type="hidden" name="user_email" value="test@example.com">
+    </form>
+
+    <script>
+        // Auto-submit the form when page loads
+        window.onload = function() {
+            document.getElementById('testForm').submit();
+        };
+    </script>
+</body>
+</html>
