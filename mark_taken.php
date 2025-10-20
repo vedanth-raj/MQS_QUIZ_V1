@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$isRender = getenv('RENDER') !== false;
-$dbPath = $isRender ? __DIR__ . '/mqs_quiz.db' : 'sqlite:mqs_quiz.db';
+$isRender = getenv('RENDER_EXTERNAL_URL') !== false;
+$dbPath = $isRender ? 'sqlite:' . __DIR__ . '/mqs_quiz.db' : 'sqlite:mqs_quiz.db';
 
 try {
     $db = new PDO($dbPath);

@@ -15,6 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+// Function to determine rating based on percentage
+function getRating($percent) {
+    if ($percent >= 91) {
+        return 'Excellent';
+    } elseif ($percent >= 76) {
+        return 'Good';
+    } elseif ($percent >= 60) {
+        return 'Average';
+    } else {
+        return 'Need attention';
+    }
+}
+
 // Get POST data
 $eqPercent = isset($_POST['eqPercent']) ? floatval($_POST['eqPercent']) : 0;
 $iqPercent = isset($_POST['iqPercent']) ? floatval($_POST['iqPercent']) : 0;
@@ -32,10 +45,10 @@ $userBody .= '<p>Dear ' . htmlspecialchars($user_name) . ',</p>';
 $userBody .= '<h3>Performance Table</h3>';
 $userBody .= '<table border="1" style="border-collapse: collapse;">';
 $userBody .= '<tr><th>Category</th><th>Percentage</th><th>Rating</th></tr>';
-$userBody .= '<tr><td>Emotional Quotient (EQ)</td><td>' . number_format($eqPercent, 1) . '%</td><td>' . ($eqPercent >= 80 ? 'Excellent' : ($eqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-$userBody .= '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1) . '%</td><td>' . ($iqPercent >= 80 ? 'Excellent' : ($iqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-$userBody .= '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . ($fqPercent >= 80 ? 'Excellent' : ($fqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-$userBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . ($sqPercent >= 80 ? 'Excellent' : ($sqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
+$userBody .= '<tr><td>Emotional Quotient (EQ)</td><td>' . number_format($eqPercent, 1) . '%</td><td>' . getRating($eqPercent) . '</td></tr>';
+$userBody .= '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1) . '%</td><td>' . getRating($iqPercent) . '</td></tr>';
+$userBody .= '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . getRating($fqPercent) . '</td></tr>';
+$userBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
 $userBody .= '</table>';
 
 if ($pieChart) {
@@ -103,10 +116,10 @@ echo '<h2>📊 Your Performance</h2>';
 echo '<table>';
 echo '<thead><tr><th>Category</th><th>Percentage</th><th>Rating</th></tr></thead>';
 echo '<tbody>';
-echo '<tr><td>Emotional Quotient (EQ)</td><td>' . number_format($eqPercent, 1) . '%</td><td>' . ($eqPercent >= 80 ? 'Excellent' : ($eqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-echo '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1) . '%</td><td>' . ($iqPercent >= 80 ? 'Excellent' : ($iqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-echo '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . ($fqPercent >= 80 ? 'Excellent' : ($fqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-echo '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . ($sqPercent >= 80 ? 'Excellent' : ($sqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
+echo '<tr><td>Emotional Quotient (EQ)</td><td>' . number_format($eqPercent, 1) . '%</td><td>' . getRating($eqPercent) . '</td></tr>';
+echo '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1) . '%</td><td>' . getRating($iqPercent) . '</td></tr>';
+echo '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . getRating($fqPercent) . '</td></tr>';
+echo '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
 echo '</tbody></table></div>';
 echo '<div class="recommendation"><strong>Recommendations:</strong><br>' . nl2br($formattedRecommendations) . '</div>';
 echo '<div class="footer">&copy; 2025 Espiratia. All Rights Reserved.</div>';
@@ -157,10 +170,10 @@ echo '  barCanvas.style.height = "150px";';
 echo '  chartsContainer.appendChild(barCanvas);';
 echo '  const barCtx = barCanvas.getContext("2d");';
 echo '  const ratings = [';
-echo '    quizResults.eqPercent >= 80 ? "Excellent" : quizResults.eqPercent >= 60 ? "Good" : "Needs Improvement",';
-echo '    quizResults.iqPercent >= 80 ? "Excellent" : quizResults.iqPercent >= 60 ? "Good" : "Needs Improvement",';
-echo '    quizResults.fqPercent >= 80 ? "Excellent" : quizResults.fqPercent >= 60 ? "Good" : "Needs Improvement",';
-echo '    quizResults.sqPercent >= 80 ? "Excellent" : quizResults.sqPercent >= 60 ? "Good" : "Needs Improvement"';
+echo '    quizResults.eqPercent >= 91 ? "Excellent" : quizResults.eqPercent >= 76 ? "Good" : quizResults.eqPercent >= 60 ? "Average" : "Need attention",';
+echo '    quizResults.iqPercent >= 91 ? "Excellent" : quizResults.iqPercent >= 76 ? "Good" : quizResults.iqPercent >= 60 ? "Average" : "Need attention",';
+echo '    quizResults.fqPercent >= 91 ? "Excellent" : quizResults.fqPercent >= 76 ? "Good" : quizResults.fqPercent >= 60 ? "Average" : "Need attention",';
+echo '    quizResults.sqPercent >= 91 ? "Excellent" : quizResults.sqPercent >= 76 ? "Good" : quizResults.sqPercent >= 60 ? "Average" : "Need attention"';
 echo '  ];';
 echo '  new Chart(barCtx, {';
 echo '    type: "bar",';
@@ -235,10 +248,10 @@ try {
     $adminBody .= '<h3>Results</h3>';
     $adminBody .= '<table border="1" style="border-collapse: collapse;">';
     $adminBody .= '<tr><th>Category</th><th>Percentage</th><th>Rating</th></tr>';
-    $adminBody .= '<tr><td>Emotional Quotient (EQ)</td><td>' . number_format($eqPercent, 1) . '%</td><td>' . ($eqPercent >= 80 ? 'Excellent' : ($eqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-    $adminBody .= '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1) . '%</td><td>' . ($iqPercent >= 80 ? 'Excellent' : ($iqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-    $adminBody .= '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . ($fqPercent >= 80 ? 'Excellent' : ($fqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
-    $adminBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . ($sqPercent >= 80 ? 'Excellent' : ($sqPercent >= 60 ? 'Good' : 'Needs Improvement')) . '</td></tr>';
+    $adminBody .= '<tr><td>Emotional Quotient (EQ)</td><td>' . number_format($eqPercent, 1) . '%</td><td>' . getRating($eqPercent) . '</td></tr>';
+    $adminBody .= '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1) . '%</td><td>' . getRating($iqPercent) . '</td></tr>';
+    $adminBody .= '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . getRating($fqPercent) . '</td></tr>';
+    $adminBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
     $adminBody .= '</table>';
 
     if ($pieChart) {
