@@ -81,7 +81,7 @@ try {
     $formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
     $userBody .= '<p>' . nl2br($formattedRecommendations) . '</p>';
     $userBody .= '<p>Want to connect to Expert? WhatsApp us at 9999633753</p>';
-    $userBody .= '<p>Thank you for taking the MQS Quiz!</p>';
+$userBody .= '<p>Thank you for taking the MQS Quiz!</p>';
 
     // Send email to user
     $mail->clearAddresses();
