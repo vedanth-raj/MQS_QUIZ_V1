@@ -8,11 +8,11 @@ services:
       - key: PHP_VERSION
         value: 8.1
       - key: SMTP_HOST
-        value: smtp.sendgrid.net
+        value: smtp.mailgun.org
       - key: SMTP_USERNAME
-        value: apikey
+        value: postmaster@YOUR_DOMAIN.mailgun.org
       - key: SMTP_PASSWORD
-        value: SG.YOUR_SENDGRID_API_KEY_HERE
+        value: YOUR_MAILGUN_API_KEY_HERE
       - key: SMTP_PORT
         value: 587
     staticPublishPath: ""
