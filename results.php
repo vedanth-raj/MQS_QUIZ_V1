@@ -232,8 +232,16 @@ try {
     $mail->Port       = getenv('SMTP_PORT') ?: 587; // SMTP port
 
     // Additional settings for better compatibility
-    $mail->SMTPDebug = 0; // Disable debug output
+    $mail->SMTPDebug = 2; // Enable debug output for troubleshooting
     $mail->Timeout = 30; // Timeout after 30 seconds
+    $mail->SMTPAutoTLS = false; // Disable auto TLS for debugging
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
 
     $mail->setFrom('mywork3410@gmail.com', 'MQS Quiz');
     $mail->isHTML(true);                            // Email format as HTML
