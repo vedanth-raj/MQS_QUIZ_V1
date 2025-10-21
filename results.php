@@ -64,7 +64,74 @@ if ($barChart) {
 $userBody .= '<h3>Recommendations</h3>';
 $formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
 $userBody .= '<p>' . nl2br($formattedRecommendations) . '</p>';
+$userBody .= '<p>Want to connect to Expert? WhatsApp us at 9999633753</p>';
 $userBody .= '<p>Thank you for taking the MQS Quiz!</p>';
+
+// Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+
+try {
+    // Server settings
+    $mail->isSMTP();                                // Send using SMTP
+    $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.gmail.com';           // SMTP server
+    $mail->SMTPAuth   = true;                       // Enable SMTP authentication
+    $mail->Username   = getenv('SMTP_USERNAME') ?: 'mywork3410@gmail.com';     // Your Gmail address
+    $mail->Password   = getenv('SMTP_PASSWORD') ?: 'qsjd xzdq yova ctkn';             // Your Gmail app password (no spaces)
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use STARTTLS encryption
+    $mail->Port       = getenv('SMTP_PORT') ?: 587;                        // SMTP port for STARTTLS
+
+    // Additional settings for better compatibility
+    $mail->SMTPDebug = 0; // Disable debug output for production
+    $mail->Timeout = 30; // Timeout after 30 seconds
+    $mail->SMTPAutoTLS = true; // Enable auto TLS
+
+    $mail->setFrom('mywork3410@gmail.com', 'MQS Quiz');
+    $mail->isHTML(true);                            // Email format as HTML
+
+    // Send email to user
+    $mail->clearAddresses();
+    $mail->addAddress($user_email, $user_name);
+    $mail->Subject = 'Your MQS Quiz Results';
+    $mail->Body = $userBody;
+    $mail->send();
+
+    // Send email to admin
+    $adminBody = '<h2>New MQS Quiz Submission</h2>';
+    $adminBody .= '<p><strong>User Name:</strong> ' . htmlspecialchars($user_name) . '</p>';
+    $adminBody .= '<p><strong>User Email:</strong> ' . htmlspecialchars($user_email) . '</p>';
+    $adminBody .= '<h3>Results</h3>';
+    $adminBody .= '<table border="1" style="border-collapse: collapse;">';
+    $adminBody .= '<tr><th>Category</th><th>Percentage</th><th>Rating</th></tr>';
+    $adminBody .= '<tr><td>Emotional Quotient (EQ)</td><td>' . number_format($eqPercent, 1) . '%</td><td>' . getRating($eqPercent) . '</td></tr>';
+    $adminBody .= '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1) . '%</td><td>' . getRating($iqPercent) . '</td></tr>';
+    $adminBody .= '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . getRating($fqPercent) . '</td></tr>';
+    $adminBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
+    $adminBody .= '</table>';
+
+    if ($pieChart) {
+        $adminBody .= '<h3>Quotient Distribution Chart</h3>';
+        $adminBody .= '<img src="' . $pieChart . '" alt="Pie Chart" />';
+    }
+
+    if ($barChart) {
+        $adminBody .= '<h3>Category Scores Chart</h3>';
+        $adminBody .= '<img src="' . $barChart . '" alt="Bar Chart" />';
+    }
+
+    $adminBody .= '<h3>Recommendations</h3>';
+    $adminBody .= '<p>' . nl2br($formattedRecommendations) . '</p>';
+
+    $mail->clearAddresses();
+    $mail->addAddress('pvvraj1234433@gmail.com', 'Admin');
+    $mail->Subject = 'New MQS Quiz Submission';
+    $mail->Body = $adminBody;
+    $mail->send();
+
+    // Emails sent successfully, but no output to page
+} catch (Exception $e) {
+    // Error occurred, but suppress output to page for clean results display
+    error_log('Mailer Error: ' . $mail->ErrorInfo);
+}
 
 // Display the results with UI matching quiz.html
 echo '<!DOCTYPE html>';
@@ -121,6 +188,7 @@ echo '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1
 echo '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . getRating($fqPercent) . '</td></tr>';
 echo '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
 echo '</tbody></table></div>';
+echo '<div id="charts-container"></div>';
 echo '<div class="recommendation"><strong>Recommendations:</strong><br>' . nl2br($formattedRecommendations) . '</div>';
 echo '<div class="footer">&copy; 2025 Espiratia. All Rights Reserved.</div>';
 echo '</div>';
@@ -214,79 +282,8 @@ echo '      interaction: { intersect: false, mode: "index" }';
 echo '    }';
 echo '  });';
 echo '}';
+echo 'showCharts();';
 echo '</script>';
 echo '</body>';
 echo '</html>';
-
-// Now send emails
-$mail = new PHPMailer(true);
-
-try {
-    // Server settings - using environment variables for flexibility (switched to Mailgun for better cloud compatibility)
-    $mail->isSMTP();                                // Send using SMTP
-    $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.mailgun.org'; // SMTP server
-    $mail->SMTPAuth   = true;                       // Enable SMTP authentication
-    $mail->Username   = getenv('SMTP_USERNAME') ?: 'postmaster@YOUR_DOMAIN.mailgun.org'; // SMTP username (Mailgun domain)
-    $mail->Password   = getenv('SMTP_PASSWORD') ?: ''; // SMTP password (Mailgun API key)
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use STARTTLS encryption
-    $mail->Port       = getenv('SMTP_PORT') ?: 587; // SMTP port
-
-    // Additional settings for better compatibility
-    $mail->SMTPDebug = 2; // Enable debug output for troubleshooting
-    $mail->Timeout = 30; // Timeout after 30 seconds
-    $mail->SMTPAutoTLS = false; // Disable auto TLS for debugging
-    $mail->SMTPOptions = array(
-        'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        )
-    );
-
-    $mail->setFrom('mywork3410@gmail.com', 'MQS Quiz');
-    $mail->isHTML(true);                            // Email format as HTML
-
-    // Send email to user
-    $mail->clearAddresses();
-    $mail->addAddress($user_email, $user_name);
-    $mail->Subject = 'Your MQS Quiz Results';
-    $mail->Body = $userBody;
-    $mail->send();
-
-    // Send email to admin
-    $adminBody = '<h2>New MQS Quiz Submission</h2>';
-    $adminBody .= '<p><strong>User Name:</strong> ' . htmlspecialchars($user_name) . '</p>';
-    $adminBody .= '<p><strong>User Email:</strong> ' . htmlspecialchars($user_email) . '</p>';
-    $adminBody .= '<h3>Results</h3>';
-    $adminBody .= '<table border="1" style="border-collapse: collapse;">';
-    $adminBody .= '<tr><th>Category</th><th>Percentage</th><th>Rating</th></tr>';
-    $adminBody .= '<tr><td>Emotional Quotient (EQ)</td><td>' . number_format($eqPercent, 1) . '%</td><td>' . getRating($eqPercent) . '</td></tr>';
-    $adminBody .= '<tr><td>Intelligence Quotient (IQ)</td><td>' . number_format($iqPercent, 1) . '%</td><td>' . getRating($iqPercent) . '</td></tr>';
-    $adminBody .= '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) . '%</td><td>' . getRating($fqPercent) . '</td></tr>';
-    $adminBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
-    $adminBody .= '</table>';
-
-    if ($pieChart) {
-        $adminBody .= '<h3>Quotient Distribution Chart</h3>';
-        $adminBody .= '<img src="' . $pieChart . '" alt="Pie Chart" />';
-    }
-
-    if ($barChart) {
-        $adminBody .= '<h3>Category Scores Chart</h3>';
-        $adminBody .= '<img src="' . $barChart . '" alt="Bar Chart" />';
-    }
-
-    $adminBody .= '<h3>Recommendations</h3>';
-    $adminBody .= '<p>' . nl2br($formattedRecommendations) . '</p>';
-
-    $mail->clearAddresses();
-    $mail->addAddress('pvvraj1234433@gmail.com', 'Admin');
-    $mail->Subject = 'New MQS Quiz Submission';
-    $mail->Body = $adminBody;
-    $mail->send();
-
-    // Note: Emails sent after displaying results
-} catch (Exception $e) {
-    echo "<p>Message could not be sent. Mailer Error: {$mail->ErrorInfo}</p>";
-}
 ?>

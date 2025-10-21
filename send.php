@@ -43,26 +43,19 @@ $user_email = isset($_POST['user_email']) ? $_POST['user_email'] : '';
 $mail = new PHPMailer(true);
 
 try {
-    // Server settings - using environment variables for flexibility (switched to Mailgun for better cloud compatibility)
+    // Server settings
     $mail->isSMTP();                                // Send using SMTP
-    $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.mailgun.org'; // SMTP server
+    $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.gmail.com';           // SMTP server
     $mail->SMTPAuth   = true;                       // Enable SMTP authentication
-    $mail->Username   = getenv('SMTP_USERNAME') ?: 'postmaster@YOUR_DOMAIN.mailgun.org'; // SMTP username (Mailgun domain)
-    $mail->Password   = getenv('SMTP_PASSWORD') ?: ''; // SMTP password (Mailgun API key)
+    $mail->Username   = getenv('SMTP_USERNAME') ?: 'mywork3410@gmail.com';     // Your Gmail address
+    $mail->Password   = getenv('SMTP_PASSWORD') ?: 'qsjd xzdq yova ctkn';             // Your Gmail app password (no spaces)
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use STARTTLS encryption
-    $mail->Port       = getenv('SMTP_PORT') ?: 587; // SMTP port
+    $mail->Port       = getenv('SMTP_PORT') ?: 587;                        // SMTP port for STARTTLS
 
     // Additional settings for better compatibility
-    $mail->SMTPDebug = 2; // Enable debug output for troubleshooting
+    $mail->SMTPDebug = 0; // Disable debug output for production
     $mail->Timeout = 30; // Timeout after 30 seconds
-    $mail->SMTPAutoTLS = false; // Disable auto TLS for debugging
-    $mail->SMTPOptions = array(
-        'ssl' => array(
-            'verify_peer' => false,
-            'verify_peer_name' => false,
-            'allow_self_signed' => true
-        )
-    );
+    $mail->SMTPAutoTLS = true; // Enable auto TLS
 
     $mail->setFrom('mywork3410@gmail.com', 'MQS Quiz');
     $mail->isHTML(true);                            // Email format as HTML
@@ -95,13 +88,6 @@ try {
     $userBody .= '<p>Want to connect to Expert? WhatsApp us at 9999633753</p>';
     $userBody .= '<p>Thank you for taking the MQS Quiz!</p>';
 
-    // Send email to user
-    $mail->clearAddresses();
-    $mail->addAddress($user_email, $user_name);
-    $mail->Subject = 'Your MQS Quiz Results';
-    $mail->Body = $userBody;
-    $mail->send();
-
     // Send email to admin
     $adminBody = '<h2>New MQS Quiz Submission</h2>';
     $adminBody .= '<p><strong>User Name:</strong> ' . htmlspecialchars($user_name) . '</p>';
@@ -132,6 +118,13 @@ try {
     $mail->addAddress('pvvraj1234433@gmail.com', 'Admin');
     $mail->Subject = 'New MQS Quiz Submission';
     $mail->Body = $adminBody;
+    $mail->send();
+
+    // Send email to user
+    $mail->clearAddresses();
+    $mail->addAddress($user_email, $user_name);
+    $mail->Subject = 'Your MQS Quiz Results';
+    $mail->Body = $userBody;
     $mail->send();
 
     echo 'Emails sent successfully!';
