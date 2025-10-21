@@ -10,7 +10,7 @@ services:
       - key: SMTP_HOST
         value: smtp.mailgun.org
       - key: SMTP_USERNAME
-        value: postmaster@YOUR_DOMAIN.mailgun.org
+        value: postmaster@sandbox36627b5b68c94312b8e418009a7ece4f.mailgun.org
       - key: SMTP_PASSWORD
         value: YOUR_MAILGUN_API_KEY_HERE
       - key: SMTP_PORT
