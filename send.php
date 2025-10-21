@@ -43,12 +43,12 @@ $user_email = isset($_POST['user_email']) ? $_POST['user_email'] : '';
 $mail = new PHPMailer(true);
 
 try {
-    // Server settings - using environment variables for flexibility
+    // Server settings - using environment variables for flexibility (switched to SendGrid for better cloud compatibility)
     $mail->isSMTP();                                // Send using SMTP
-    $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.gmail.com'; // SMTP server
+    $mail->Host       = getenv('SMTP_HOST') ?: 'smtp.sendgrid.net'; // SMTP server
     $mail->SMTPAuth   = true;                       // Enable SMTP authentication
-    $mail->Username   = getenv('SMTP_USERNAME') ?: 'mywork3410@gmail.com'; // SMTP username
-    $mail->Password   = getenv('SMTP_PASSWORD') ?: 'xfqxvnqjnwemefek'; // SMTP password
+    $mail->Username   = getenv('SMTP_USERNAME') ?: 'apikey'; // SMTP username (SendGrid uses 'apikey')
+    $mail->Password   = getenv('SMTP_PASSWORD') ?: ''; // SMTP password (SendGrid API key)
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use STARTTLS encryption
     $mail->Port       = getenv('SMTP_PORT') ?: 587; // SMTP port
 

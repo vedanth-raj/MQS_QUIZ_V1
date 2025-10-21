@@ -8,11 +8,11 @@ services:
       - key: PHP_VERSION
         value: 8.1
       - key: SMTP_HOST
-        value: smtp.gmail.com
+        value: smtp.sendgrid.net
       - key: SMTP_USERNAME
-        value: mywork3410@gmail.com
+        value: apikey
       - key: SMTP_PASSWORD
-        value: xfqxvnqjnwemefek
+        value: SG.YOUR_SENDGRID_API_KEY_HERE
       - key: SMTP_PORT
         value: 587
     staticPublishPath: ""
