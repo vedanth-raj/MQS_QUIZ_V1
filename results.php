@@ -231,6 +231,10 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Use STARTTLS encryption
     $mail->Port       = getenv('SMTP_PORT') ?: 587; // SMTP port
 
+    // Additional settings for better compatibility
+    $mail->SMTPDebug = 0; // Disable debug output
+    $mail->Timeout = 30; // Timeout after 30 seconds
+
     $mail->setFrom('mywork3410@gmail.com', 'MQS Quiz');
     $mail->isHTML(true);                            // Email format as HTML
 

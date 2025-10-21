@@ -12,7 +12,7 @@ services:
       - key: SMTP_USERNAME
         value: mywork3410@gmail.com
       - key: SMTP_PASSWORD
-        value: xfqxnwqjnwemefek
+        value: xfqxvnqjnwemefek
       - key: SMTP_PORT
         value: 587
     staticPublishPath: ""
