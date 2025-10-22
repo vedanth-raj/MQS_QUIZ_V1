@@ -20,7 +20,16 @@
             align-items: center;
             position: relative;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: white;
+        }
+        .logo {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+        .logo:hover {
+            transform: scale(1.1);
         }
         .container {
             background: rgba(255, 255, 255, 0.1);
@@ -93,6 +102,7 @@
 </head>
 <body>
     <div class="container">
+        <img src="images/cropped-5-1.webp" alt="Logo" class="logo" onclick="window.open('https://espiratia.com/', '_blank')">
         <h2>MQS Quiz Login</h2>
         <form action="login.php" method="post">
             <input type="text" name="name" placeholder="Name" required />
