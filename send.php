@@ -84,7 +84,10 @@ try {
 
     $userBody .= '<h3>Recommendations</h3>';
     $formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
-    $userBody .= '<p>' . nl2br($formattedRecommendations) . '</p>';
+    $recs = explode('<br><br>', $formattedRecommendations);
+    foreach ($recs as $rec) {
+        $userBody .= '<p>' . $rec . '</p>';
+    }
     $userBody .= '<p>Want to connect to Expert? WhatsApp us at 9999633753</p>';
     $userBody .= '<p>Thank you for taking the MQS Quiz!</p>';
 

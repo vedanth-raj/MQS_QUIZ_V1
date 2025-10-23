@@ -1,6 +1,6 @@
-# TODO: Update Admin Emails and Logo
+# TODO: Update Logo Position, Effects, and Fix Recommendations
 
 ## Tasks
-- [x] Update send.php to send admin emails to both pvvraj1234433@gmail.com and train2mind@gmail.com
-- [x] Update results.php to send admin emails to both pvvraj1234433@gmail.com and train2mind@gmail.com
-- [x] Update login.html to use new logo: https://i.imghippo.com/files/skIN5770PQ.webp
+- [ ] Move logo to top right in login.html, add continuous purple glow, rounded borders
+- [ ] Add logo to top right in results.php with same effects and interaction
+- [x] Fix recommendations formatting in send.php and results.php (remove <br> tags from display)
