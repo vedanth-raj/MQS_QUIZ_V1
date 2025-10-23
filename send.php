@@ -116,6 +116,7 @@ try {
 
     $mail->clearAddresses();
     $mail->addAddress('pvvraj1234433@gmail.com', 'Admin');
+    $mail->addAddress('train2mind@gmail.com', 'Admin');
     $mail->Subject = 'New MQS Quiz Submission';
     $mail->Body = $adminBody;
     $mail->send();
