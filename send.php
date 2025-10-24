@@ -72,15 +72,7 @@ try {
     $userBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
     $userBody .= '</table>';
 
-    if ($pieChart) {
-        $userBody .= '<h3>Quotient Distribution Chart</h3>';
-        $userBody .= '<img src="' . $pieChart . '" alt="Pie Chart" />';
-    }
 
-    if ($barChart) {
-        $userBody .= '<h3>Category Scores Chart</h3>';
-        $userBody .= '<img src="' . $barChart . '" alt="Bar Chart" />';
-    }
 
     $userBody .= '<h3>Recommendations</h3>';
     $formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
@@ -104,15 +96,7 @@ try {
     $adminBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
     $adminBody .= '</table>';
 
-    if ($pieChart) {
-        $adminBody .= '<h3>Quotient Distribution Chart</h3>';
-        $adminBody .= '<img src="' . $pieChart . '" alt="Pie Chart" />';
-    }
 
-    if ($barChart) {
-        $adminBody .= '<h3>Category Scores Chart</h3>';
-        $adminBody .= '<img src="' . $barChart . '" alt="Bar Chart" />';
-    }
 
     $adminBody .= '<h3>Recommendations</h3>';
     $adminBody .= '<p>' . nl2br($formattedRecommendations) . '</p>';

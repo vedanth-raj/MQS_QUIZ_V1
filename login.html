@@ -23,13 +23,27 @@
             background: white;
         }
         .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             cursor: pointer;
             transition: transform 0.3s ease;
-            max-width: 200px;
-            margin-bottom: 20px;
+            max-width: 150px;
+            border-radius: 50%;
+            border: 3px solid #8a2be2;
+            box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2, 0 0 60px #8a2be2;
+            animation: glow 2s ease-in-out infinite alternate;
         }
         .logo:hover {
             transform: scale(1.1);
+        }
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2, 0 0 60px #8a2be2;
+            }
+            to {
+                box-shadow: 0 0 30px #8a2be2, 0 0 50px #8a2be2, 0 0 80px #8a2be2;
+            }
         }
         .container {
             background: rgba(255, 255, 255, 0.1);
@@ -101,8 +115,8 @@
     </style>
 </head>
 <body>
+    <img src="https://i.imghippo.com/files/skIN5770PQ.webp" alt="Logo" class="logo" onclick="window.open('https://espiratia.com/', '_blank')">
     <div class="container">
-        <img src="https://i.imghippo.com/files/skIN5770PQ.webp" alt="Logo" class="logo" onclick="window.open('https://espiratia.com/', '_blank')">
         <h2>MQS Quiz Login</h2>
         <form action="login.php" method="post">
             <input type="text" name="name" placeholder="Name" required />

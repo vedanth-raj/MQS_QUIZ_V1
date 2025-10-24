@@ -493,6 +493,31 @@
             100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
 
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            max-width: 150px;
+            border-radius: 50%;
+            border: 3px solid #8a2be2;
+            box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2, 0 0 60px #8a2be2;
+            animation: glow 2s ease-in-out infinite alternate;
+            z-index: 100;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2, 0 0 60px #8a2be2;
+            }
+            to {
+                box-shadow: 0 0 30px #8a2be2, 0 0 50px #8a2be2, 0 0 80px #8a2be2;
+            }
+        }
+
         @media (max-width: 768px) {
             .container { padding: 20px; }
             .question-text { font-size: 1.1em; }
@@ -502,6 +527,7 @@
     </style>
 </head>
 <body>
+    <img src="https://i.imghippo.com/files/skIN5770PQ.webp" alt="Logo" class="logo" onclick="window.open('https://espiratia.com/', '_blank')">
     <div class="floating-shapes">
         <div class="floating-shape shape-1"></div>
         <div class="floating-shape shape-2"></div>

@@ -34,6 +34,7 @@ $iqPercent = isset($_POST['iqPercent']) ? floatval($_POST['iqPercent']) : 0;
 $fqPercent = isset($_POST['fqPercent']) ? floatval($_POST['fqPercent']) : 0;
 $sqPercent = isset($_POST['sqPercent']) ? floatval($_POST['sqPercent']) : 0;
 $recommendations = isset($_POST['recommendations']) ? $_POST['recommendations'] : '';
+$formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
 $pieChart = isset($_POST['pieChart']) ? $_POST['pieChart'] : '';
 $barChart = isset($_POST['barChart']) ? $_POST['barChart'] : '';
 $user_name = isset($_POST['user_name']) ? $_POST['user_name'] : '';
@@ -62,10 +63,9 @@ if ($barChart) {
 }
 
 $userBody .= '<h3>Recommendations</h3>';
-$formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
-$recs = explode('<br><br>', $formattedRecommendations);
+$recs = explode('<br><br>', $recommendations);
 foreach ($recs as $rec) {
-    $userBody .= '<p>' . $rec . '</p>';
+    $userBody .= '<p>' . preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($rec)) . '</p>';
 }
 $userBody .= '<p>Want to connect to Expert? WhatsApp us at 9999633753</p>';
 $userBody .= '<p>Thank you for taking the MQS Quiz!</p>';
@@ -122,6 +122,7 @@ try {
     }
 
     $adminBody .= '<h3>Recommendations</h3>';
+    $formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
     $adminBody .= '<p>' . nl2br($formattedRecommendations) . '</p>';
 
     $mail->clearAddresses();
@@ -148,9 +149,8 @@ echo '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>';
 echo '<style>';
 echo '* { margin: 0; padding: 0; box-sizing: border-box; }';
 echo 'body { font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; min-height: 100vh; display: flex; justify-content: center; align-items: center; position: relative; overflow-x: hidden; background-size: cover; background-position: center; background-repeat: no-repeat; background-color: #f0f2f5; }';
-echo '.logo { position: absolute; top: 20px; right: 20px; cursor: pointer; transition: transform 0.3s ease; max-width: 150px; border-radius: 50%; border: 3px solid #8a2be2; box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2, 0 0 60px #8a2be2; animation: glow 2s ease-in-out infinite alternate; z-index: 100; }';
+echo '.logo { position: absolute; top: 20px; left: 20px; cursor: pointer; transition: transform 0.3s ease; max-width: 150px; border-radius: 50%; border: 3px solid #8a2be2; z-index: 100; }';
 echo '.logo:hover { transform: scale(1.1); }';
-echo '@keyframes glow { from { box-shadow: 0 0 20px #8a2be2, 0 0 40px #8a2be2, 0 0 60px #8a2be2; } to { box-shadow: 0 0 30px #8a2be2, 0 0 50px #8a2be2, 0 0 80px #8a2be2; } }';
 echo '.floating-shapes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }';
 echo '.floating-shape { position: absolute; opacity: 0.1; animation: float 20s infinite linear; }';
 echo '.shape-1 { top: 20%; left: 10%; width: 60px; height: 60px; background: #ff6b6b; border-radius: 50%; animation-delay: 0s; }';
@@ -183,6 +183,7 @@ echo '<div class="floating-shape shape-2"></div>';
 echo '<div class="floating-shape shape-3"></div>';
 echo '<div class="floating-shape shape-4"></div>';
 echo '</div>';
+echo '<img src="https://i.imghippo.com/files/skIN5770PQ.webp" alt="Logo" class="logo" onclick="window.open(\'https://espiratia.com/\', \'_blank\')" style="right: 20px; left: auto;">';
 echo '<div class="container">';
 echo '<h1>Multidimensional Quotient scale (MQS)</h1>';
 echo '<div class="results-table">';
@@ -196,11 +197,11 @@ echo '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPercent, 1) .
 echo '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
 echo '</tbody></table></div>';
 echo '<div id="charts-container"></div>';
-echo '<img src="https://i.imghippo.com/files/skIN5770PQ.webp" alt="Logo" class="logo" onclick="window.open(\'https://espiratia.com/\', \'_blank\')">';
-echo '<div class="recommendation"><strong>Recommendations:</strong><br>';
-$recs = explode('<br><br>', $formattedRecommendations);
+echo '<div class="recommendation">';
+echo '<p><strong>Recommendations:</strong></p>';
+$recs = explode('<br><br>', $recommendations);
 foreach ($recs as $rec) {
-    echo '<p>' . $rec . '</p>';
+    echo '<p>' . preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($rec)) . '</p>';
 }
 echo '</div>';
 echo '<div class="footer">&copy; 2025 Espiratia. All Rights Reserved.</div>';
