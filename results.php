@@ -34,6 +34,7 @@ $iqPercent = isset($_POST['iqPercent']) ? floatval($_POST['iqPercent']) : 0;
 $fqPercent = isset($_POST['fqPercent']) ? floatval($_POST['fqPercent']) : 0;
 $sqPercent = isset($_POST['sqPercent']) ? floatval($_POST['sqPercent']) : 0;
 $recommendations = isset($_POST['recommendations']) ? $_POST['recommendations'] : '';
+$recommendations = str_replace('<br>', '', $recommendations); // Remove <br> tags
 $formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
 $pieChart = isset($_POST['pieChart']) ? $_POST['pieChart'] : '';
 $barChart = isset($_POST['barChart']) ? $_POST['barChart'] : '';
@@ -52,20 +53,13 @@ $userBody .= '<tr><td>Financial Quotient (FQ)</td><td>' . number_format($fqPerce
 $userBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
 $userBody .= '</table>';
 
-if ($pieChart) {
-    $userBody .= '<h3>Quotient Distribution Chart</h3>';
-    $userBody .= '<img src="' . $pieChart . '" alt="Pie Chart" />';
-}
 
-if ($barChart) {
-    $userBody .= '<h3>Category Scores Chart</h3>';
-    $userBody .= '<img src="' . $barChart . '" alt="Bar Chart" />';
-}
 
 $userBody .= '<h3>Recommendations</h3>';
-$recs = explode('<br><br>', $recommendations);
+$recs = preg_split('/(?=Emotional Quotient \(EQ\)|Intelligence Quotient \(IQ\)|Financial Quotient \(FQ\)|Social Quotient \(SQ\))/', $recommendations, -1, PREG_SPLIT_NO_EMPTY);
 foreach ($recs as $rec) {
-    $userBody .= '<p>' . preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($rec)) . '</p>';
+    $formatted = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars(trim($rec)));
+    $userBody .= '<p>' . $formatted . '</p>';
 }
 $userBody .= '<p>Want to connect to Expert? WhatsApp us at 9999633753</p>';
 $userBody .= '<p>Thank you for taking the MQS Quiz!</p>';
@@ -111,19 +105,12 @@ try {
     $adminBody .= '<tr><td>Social Quotient (SQ)</td><td>' . number_format($sqPercent, 1) . '%</td><td>' . getRating($sqPercent) . '</td></tr>';
     $adminBody .= '</table>';
 
-    if ($pieChart) {
-        $adminBody .= '<h3>Quotient Distribution Chart</h3>';
-        $adminBody .= '<img src="' . $pieChart . '" alt="Pie Chart" />';
-    }
-
-    if ($barChart) {
-        $adminBody .= '<h3>Category Scores Chart</h3>';
-        $adminBody .= '<img src="' . $barChart . '" alt="Bar Chart" />';
-    }
-
     $adminBody .= '<h3>Recommendations</h3>';
-    $formattedRecommendations = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations));
-    $adminBody .= '<p>' . nl2br($formattedRecommendations) . '</p>';
+    $recs = preg_split('/(?=Emotional Quotient \(EQ\)|Intelligence Quotient \(IQ\)|Financial Quotient \(FQ\)|Social Quotient \(SQ\))/', $recommendations, -1, PREG_SPLIT_NO_EMPTY);
+    foreach ($recs as $rec) {
+        $formatted = preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars(trim($rec)));
+        $adminBody .= '<p>' . $formatted . '</p>';
+    }
 
     $mail->clearAddresses();
     $mail->addAddress('pvvraj1234433@gmail.com', 'Admin');
@@ -199,10 +186,7 @@ echo '</tbody></table></div>';
 echo '<div id="charts-container"></div>';
 echo '<div class="recommendation">';
 echo '<p><strong>Recommendations:</strong></p>';
-$recs = explode('<br><br>', $recommendations);
-foreach ($recs as $rec) {
-    echo '<p>' . preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($rec)) . '</p>';
-}
+echo '<p>' . preg_replace('/\*\*(.*?)\*\*/', '<strong>$1</strong>', htmlspecialchars($recommendations)) . '</p>';
 echo '</div>';
 echo '<div class="footer">&copy; 2025 Espiratia. All Rights Reserved.</div>';
 echo '</div>';

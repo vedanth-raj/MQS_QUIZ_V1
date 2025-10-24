@@ -980,27 +980,27 @@ fetch('check_session.php')
         function getRecommendations(results) {
             const recommendations = [];
             if (results.eqPercent < 60) {
-                recommendations.push("**Emotional Quotient (EQ):** Your emotional intelligence could use improvement. Practice active listening, empathy exercises, or journaling to better understand and manage your emotions.");
+                recommendations.push("Emotional Quotient (EQ): Your emotional intelligence could use improvement. Practice active listening, empathy exercises, or journaling to better understand and manage your emotions.");
             } else if (results.eqPercent >= 80) {
-                recommendations.push("**Emotional Quotient (EQ):** Excellent emotional intelligence! Continue nurturing your skills by engaging in group discussions or mentoring others.");
+                recommendations.push("Emotional Quotient (EQ): Excellent emotional intelligence! Continue nurturing your skills by engaging in group discussions or mentoring others.");
             }
 
             if (results.iqPercent < 60) {
-                recommendations.push("**Intelligence Quotient (IQ):** Your problem-solving skills could improve. Try logic puzzles, brain teasers, or time management exercises to sharpen your analytical abilities.");
+                recommendations.push("Intelligence Quotient (IQ): Your problem-solving skills could improve. Try logic puzzles, brain teasers, or time management exercises to sharpen your analytical abilities.");
             } else if (results.iqPercent >= 80) {
-                recommendations.push("**Intelligence Quotient (IQ):** Strong analytical skills! Keep challenging yourself with complex problems or learning new skills.");
+                recommendations.push("Intelligence Quotient (IQ): Strong analytical skills! Keep challenging yourself with complex problems or learning new skills.");
             }
 
             if (results.fqPercent < 60) {
-                recommendations.push("**Financial Quotient (FQ):** Financial management needs work. Start by creating a budget, tracking expenses, or learning basic financial concepts like saving and investing.");
+                recommendations.push("Financial Quotient (FQ): Financial management needs work. Start by creating a budget, tracking expenses, or learning basic financial concepts like saving and investing.");
             } else if (results.fqPercent >= 80) {
-                recommendations.push("**Financial Quotient (FQ):** Great financial awareness! Explore advanced topics like investing or long-term financial planning.");
+                recommendations.push("Financial Quotient (FQ): Great financial awareness! Explore advanced topics like investing or long-term financial planning.");
             }
 
             if (results.sqPercent < 60) {
-                recommendations.push("**Social Quotient (SQ):** Your social skills could benefit from practice. Try initiating conversations in groups or joining clubs to build confidence.");
+                recommendations.push("Social Quotient (SQ): Your social skills could benefit from practice. Try initiating conversations in groups or joining clubs to build confidence.");
             } else if (results.sqPercent >= 80) {
-                recommendations.push("**Social Quotient (SQ):** Outstanding social skills! Continue fostering relationships by mediating conflicts or collaborating in diverse teams.");
+                recommendations.push("Social Quotient (SQ): Outstanding social skills! Continue fostering relationships by mediating conflicts or collaborating in diverse teams.");
             }
 
             return recommendations.length > 0 ? recommendations.join('<br><br>') : 'Balanced performance across all areas! Keep practicing to maintain your skills.';
